@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psql-sendder
+spec:
+  selector:
+    matchLabels:
+      app: psql-sendder
+      department: sales
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: psql-sendder
+        department: sales
+    spec:
+      containers:
+      - name: psql-sendder
+        image: "mansurali901/postgres-sendder:v1"
+        env:
+        - name: "PORT"
+          value: "5432"
+        envFrom:
+          - configMapRef:
+              name: postgres-config
+        volumeMounts:
+          - mountPath: /var/lib/postgresql
+            name: psql-data
+      volumes:
+        - name: psql-data
+          persistentVolumeClaim:
+            claimName: psql-data
+
