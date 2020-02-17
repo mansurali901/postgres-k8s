@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: postgres-config
   labels:
-    app: postgres
+    app: postgres-ms
 data:
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: docker
+  POSTGRES_USER: dbsecops
+  POSTGRES_PASSWORD: Dbf0rSur3

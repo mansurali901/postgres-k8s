@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: psql-sendder
+  name: psql-sendder-ms
 spec:
   selector:
     matchLabels:
-      app: psql-sendder
+      app: psql-sendder-ms
       department: sales
   replicas: 1
   template:
     metadata:
       labels:
-        app: psql-sendder
+        app: psql-sendder-ms
         department: sales
     spec:
       containers:
-      - name: psql-sendder
+      - name: psql-sendder-ms
         image: "mansurali901/postgres-sendder:v1"
         env:
         - name: "PORT"
@@ -25,9 +25,9 @@ spec:
               name: postgres-config
         volumeMounts:
           - mountPath: /var/lib/postgresql
-            name: psql-data
+            name: psql-data-ms
       volumes:
-        - name: psql-data
+        - name: psql-data-ms
           persistentVolumeClaim:
-            claimName: psql-data
+            claimName: psql-data-ms
 
